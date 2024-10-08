@@ -1,0 +1,22 @@
+:root {
+  --ui-color-neutral-000: #ffffff;
+  --ui-color-neutral-100: #fafafa;
+  --ui-color-neutral-200: #f5f5f5;
+  --ui-color-neutral-300: #e5e5e5;
+  --ui-color-neutral-400: #d4d4d4;
+  --ui-color-neutral-500: #a3a3a3;
+  --ui-color-neutral-600: #737373;
+  --ui-color-neutral-700: #525252;
+  --ui-color-neutral-800: #404040;
+  --ui-color-neutral-900: #262626;
+
+  --ui-color-accent-100: #fff7ed;
+  --ui-color-accent-200: #ffedd5;
+  --ui-color-accent-300: #fed7aa;
+  --ui-color-accent-400: #fdba74;
+  --ui-color-accent-500: #fb923c;
+  --ui-color-accent-600: #f97316;
+  --ui-color-accent-700: #ea580c;
+  --ui-color-accent-800: #c2410c;
+  --ui-color-accent-900: #9a3412;
+}

@@ -1,0 +1,9 @@
+:root {
+  --ui-border-100: 1px;
+  --ui-border-200: 2px;
+  --ui-border-300: 3px;
+
+  --ui-rounding-100: 6px;
+  --ui-rounding-200: 9px;
+  --ui-rounding-300: 18px;
+}

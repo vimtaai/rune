@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --ui-line-height-100: 18px;
+  --ui-line-height-200: 24px;
+  --ui-line-height-300: 30px;
+
+  --ui-font-size-100: 12px;
+  --ui-font-size-200: 13px;
+  --ui-font-size-300: 14px;
+  --ui-font-size-400: 16px;
+  --ui-font-size-500: 18px;
+
+  --ui-font-family-sans-serif: "Noto Sans", min;
+}
