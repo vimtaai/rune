@@ -1,0 +1,35 @@
+.card {
+  &.index {
+    &.small {
+      --print-card-large-side: 5in;
+      --print-card-small-side: 3in;
+    }
+
+    &.large {
+      --print-card-large-side: 6in;
+      --print-card-small-side: 5in;
+    }
+  }
+
+  &.label {
+    &.small {
+      --print-card-large-side: 2in;
+      --print-card-small-side: 2in;
+    }
+
+    &.large {
+      --print-card-large-side: 2.5in;
+      --print-card-small-side: 2.5in;
+    }
+  }
+
+  &.portrait {
+    height: var(--print-card-large-side);
+    width: var(--print-card-small-side);
+  }
+
+  &.landscape {
+    height: var(--print-card-small-side);
+    width: var(--print-card-large-side);
+  }
+}

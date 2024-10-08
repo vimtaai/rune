@@ -1,0 +1,39 @@
+.sheet {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.15in;
+  place-content: space-evenly;
+  overflow: hidden;
+
+  &.a4 {
+    --print-sheet-large-side: 297mm;
+    --print-sheet-small-side: 210mm;
+  }
+
+  &.a5 {
+    --print-sheet-large-side: 210mm;
+    --print-sheet-small-side: 148mm;
+  }
+
+  &.letter {
+    --print-sheet-large-side: 11in;
+    --print-sheet-small-side: 8.5in;
+  }
+
+  &.portrait {
+    height: var(--print-sheet-large-side);
+    width: var(--print-sheet-small-side);
+  }
+
+  &.landscape {
+    height: var(--print-sheet-small-side);
+    width: var(--print-sheet-large-side);
+  }
+
+  @media screen {
+    background-color: var(--print-sheet-background);
+    box-shadow: 5px 5px 20px rgb(0, 0, 0, 40%);
+    margin: 16px;
+  }
+}
