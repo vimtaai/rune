@@ -1,0 +1,6 @@
+:root {
+  --ui-color-background: var(--ui-color-neutral-200);
+  --ui-color-text: var(--ui-color-neutral-900);
+  --ui-color-border: var(--ui-color-neutral-500);
+  --ui-color-shadow: #0000002f;
+}
