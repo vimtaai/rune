@@ -1,0 +1,17 @@
+[role="toolbar"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-400);
+  padding: var(--ui-space-300);
+  z-index: 1;
+
+  [role="group"] {
+    display: flex;
+    gap: var(--ui-space-300);
+    flex-direction: column;
+  }
+
+  @media print {
+    display: none;
+  }
+}
