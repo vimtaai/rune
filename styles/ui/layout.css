@@ -1,0 +1,24 @@
+body {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: auto;
+  overflow-y: scroll;
+}
+
+#preview {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: var(--ui-space-200) 70px;
+  width: calc(100vw - 2 * 70px);
+  overflow-x: hidden;
+}
+
+#toolbar {
+  position: fixed;
+  inset: var(--ui-space-400) var(--ui-space-400) auto auto;
+}
