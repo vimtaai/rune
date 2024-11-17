@@ -33,7 +33,6 @@
 
   @media screen {
     background-color: var(--print-sheet-background);
-    box-shadow: 5px 5px 20px rgb(0, 0, 0, 40%);
-    margin: 16px;
+    box-shadow: 5px 5px 20px rgb(0, 0, 0, 0.3);
   }
 }
