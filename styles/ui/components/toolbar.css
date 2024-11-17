@@ -1,14 +1,20 @@
 [role="toolbar"] {
   display: flex;
   flex-direction: column;
-  gap: var(--ui-space-400);
-  padding: var(--ui-space-300);
+  gap: var(--ui-space-300);
+  margin: 0;
+  padding: 0;
   z-index: 1;
 
   [role="group"] {
+    background-color: var(--ui-color-neutral-000);
+    border: solid var(--ui-color-border) var(--ui-border-100);
+    border-radius: var(--ui-rounding-100);
+    box-shadow: 0 0 5px var(--ui-color-shadow);
     display: flex;
-    gap: var(--ui-space-300);
     flex-direction: column;
+    gap: var(--ui-space-200);
+    padding: var(--ui-space-100);
   }
 
   @media print {
