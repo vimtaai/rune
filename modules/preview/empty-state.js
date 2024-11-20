@@ -1,10 +1,14 @@
 import { workspace } from "../../stores/workspace.js";
 
 export default ({ emptyState, openButton }) => {
+  workspace.addEventListener("root", onWorkspaceChange);
   openButton.addEventListener("click", openWorkspace);
 
-  async function openWorkspace() {
-    await workspace.pickWorkspace();
+  function openWorkspace() {
+    workspace.pickWorkspace();
+  }
+
+  function onWorkspaceChange() {
     emptyState.hidden = !workspace.isOpen;
   }
 };
