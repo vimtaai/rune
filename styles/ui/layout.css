@@ -18,10 +18,10 @@ body {
   display: flex;
   flex-grow: 1;
   justify-content: center;
-  margin: var(--ui-space-500);
+  margin: var(--space-500);
 }
 
 #toolbar {
   position: fixed;
-  inset: var(--ui-space-400) var(--ui-space-400) auto auto;
+  inset: var(--space-400) var(--space-400) auto auto;
 }

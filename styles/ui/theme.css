@@ -1,6 +1,12 @@
 :root {
-  --ui-color-background: var(--ui-color-neutral-200);
-  --ui-color-text: var(--ui-color-neutral-900);
-  --ui-color-border: var(--ui-color-neutral-500);
-  --ui-color-shadow: #0000002f;
+  --ui-app-background: var(--color-neutral-200);
+  --ui-app-text: var(--color-neutral-900);
+
+  --ui-toolbar-background: var(--color-neutral-000);
+  --ui-toolbar-border: var(--color-neutral-400);
+  --ui-toolbar-shadow: color-mix(
+    in srgb,
+    var(--color-neutral-900),
+    transparent 15%
+  );
 }

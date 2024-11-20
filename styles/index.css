@@ -1,11 +1,7 @@
-@import url("config/border.css");
-@import url("config/colors.css");
-@import url("config/motion.css");
-@import url("config/spacing.css");
-@import url("config/typography.css");
+@import url("config.css");
 
 @import url("ui/theme.css");
-@import url("ui/utilities.css");
+@import url("ui/helpers.css");
 @import url("ui/base.css");
 @import url("ui/layout.css");
 

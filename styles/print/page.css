@@ -1,7 +1,7 @@
 .page {
-  background: var(--print-page-background);
+  background: white;
   box-sizing: border-box;
-  color: var(--print-page-text);
+  color: black;
   display: block;
   padding: 0.15in;
   position: relative;

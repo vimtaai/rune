@@ -1,5 +1,5 @@
 :root {
-  --ui-transition-100: 125ms;
-  --ui-transition-200: 250ms;
-  --ui-transition-300: 375ms;
+  --transition-100: 125ms;
+  --transition-200: 250ms;
+  --transition-300: 375ms;
 }

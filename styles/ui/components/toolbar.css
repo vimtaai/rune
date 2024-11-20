@@ -1,20 +1,20 @@
 [role="toolbar"] {
   display: flex;
   flex-direction: column;
-  gap: var(--ui-space-300);
+  gap: var(--space-300);
   margin: 0;
   padding: 0;
   z-index: 1;
 
   [role="group"] {
-    background-color: var(--ui-color-neutral-000);
-    border: solid var(--ui-color-border) var(--ui-border-100);
-    border-radius: var(--ui-rounding-100);
-    box-shadow: 0 0 5px var(--ui-color-shadow);
+    background-color: var(--color-neutral-000);
+    border: solid var(--color-neutral-400) var(--border-100);
+    border-radius: var(--rounding-100);
+    box-shadow: 0 0 5px var(--color-neutral-shadow);
     display: flex;
     flex-direction: column;
-    gap: var(--ui-space-200);
-    padding: var(--ui-space-100);
+    gap: var(--space-200);
+    padding: var(--space-100);
   }
 
   @media print {
