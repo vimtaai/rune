@@ -1,4 +1,5 @@
 import { workspace } from "../stores/workspace.js";
+import { settings } from "../stores/settings.js";
 import {
   findFileInDirectory,
   getFileContents,
@@ -9,6 +10,7 @@ export default ({ preview }) => {
   workspace.addEventListener("root", onWorkspaceChange);
   workspace.addEventListener("document", onDocumentChange);
   workspace.addEventListener("stylesheet", onStylesheetChange);
+  settings.addEventListener("zoom", onZoomChange);
 
   async function onWorkspaceChange() {
     preview.hidden = false;
@@ -28,6 +30,11 @@ export default ({ preview }) => {
     const contents = await getFileContents(workspace.stylesheet);
     const stylesheetElement = preview.shadowRoot.querySelector("#stylesheet");
     stylesheetElement.textContent = contents;
+  }
+
+  async function onZoomChange() {
+    const zoomPercentage = `${settings.zoom * 100}%`;
+    preview.style.transform = `scale(${zoomPercentage})`;
   }
 
   async function convertAssetUrls(element) {
