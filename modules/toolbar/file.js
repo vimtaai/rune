@@ -7,6 +7,8 @@ export default ({
   refreshButton,
 }) => {
   workspace.addEventListener("root", onWorkspaceChange);
+  window.addEventListener("keydown", onReloadShortcut, true);
+
   workspaceButton.addEventListener("click", onWorkspaceButtonClick);
   documentButton.addEventListener("click", onDocumentButtonClick);
   stylesheetButton.addEventListener("click", onStylesheetButtonClick);
@@ -31,7 +33,18 @@ export default ({
   }
 
   function onRefreshButtonClick() {
-    workspace.document = workspace.document;
-    workspace.stylesheet = workspace.stylesheet;
+    workspace.toggleRefresh();
+  }
+
+  function onReloadShortcut(event) {
+    const isModifierCorrect =
+      event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey;
+
+    if (event.code !== "KeyR" || !isModifierCorrect) {
+      return;
+    }
+
+    event.preventDefault();
+    workspace.toggleRefresh();
   }
 };

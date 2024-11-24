@@ -42,4 +42,9 @@ export const workspace = new State({
       types: [".css"],
     });
   },
+
+  toggleRefresh() {
+    this.document = this.document;
+    this.stylesheet = this.stylesheet;
+  },
 });
