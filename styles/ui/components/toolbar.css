@@ -16,8 +16,4 @@
     gap: var(--space-200);
     padding: var(--space-100);
   }
-
-  @media print {
-    display: none;
-  }
 }

@@ -19,9 +19,17 @@ body {
   flex-grow: 1;
   justify-content: center;
   margin: var(--space-500);
+
+  @media print {
+    margin: 0;
+  }
 }
 
 #toolbar {
   position: fixed;
   inset: var(--space-400) var(--space-400) auto auto;
+
+  @media print {
+    display: none;
+  }
 }
