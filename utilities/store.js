@@ -1,4 +1,4 @@
-export class State extends EventTarget {
+export class Store extends EventTarget {
   #state = {};
 
   constructor(initialState) {

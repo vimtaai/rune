@@ -1,11 +1,11 @@
-import { State } from "../lib/state.js";
+import { Store } from "../utilities/store.js";
 import {
   getFilePath,
   pickDirectory,
   pickFileFromDirectory,
 } from "../utilities/file-system.js";
 
-export const workspace = new State({
+export const workspace = new Store({
   root: null,
   document: null,
   stylesheet: null,
