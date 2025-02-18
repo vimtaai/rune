@@ -27,14 +27,15 @@ export default ({ preview }) => {
     template.innerHTML = contents;
     await convertAssetUrls(template.content);
 
-    const documentElement = preview.shadowRoot.querySelector("#document");
-    documentElement.replaceChildren(template.content);
+    const container = preview.contentDocument.querySelector("#document");
+    container.replaceChildren(template.content);
   }
 
   async function onStylesheetChange() {
     const contents = await getFileContents(workspace.stylesheet);
-    const stylesheetElement = preview.shadowRoot.querySelector("#stylesheet");
-    stylesheetElement.textContent = contents;
+
+    const container = preview.contentDocument.querySelector("#stylesheet");
+    container.textContent = contents;
   }
 
   async function onZoomChange() {

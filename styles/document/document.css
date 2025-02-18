@@ -1,0 +1,32 @@
+html {
+  display: block;
+
+  @media screen {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral-500) transparent;
+  }
+
+  @media print {
+    scrollbar-width: none;
+  }
+}
+
+body {
+  margin: 0;
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+
+  @media screen {
+    margin: 32px;
+  }
+
+  @media print {
+    margin: 0;
+  }
+}
+
+#document {
+  display: contents;
+}
