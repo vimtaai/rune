@@ -1,3 +1,4 @@
+import { workspaceDatabase } from "../databases/workspace.js";
 import { Store } from "../utilities/store.js";
 import {
   getFilePath,
@@ -23,8 +24,13 @@ export const workspace = new Store({
     return fullPath.slice(0, -1);
   },
 
+  async loadWorkspace(root) {
+    this.root = root;
+  },
+
   async pickWorkspace() {
     this.root = await pickDirectory();
+    workspaceDatabase.setItem("handles", "root", this.root);
   },
 
   async pickDocument() {

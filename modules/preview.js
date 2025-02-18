@@ -5,8 +5,13 @@ import {
   getFileContents,
   resolvePath,
 } from "../utilities/file-system.js";
+import { workspaceDatabase } from "../databases/workspace.js";
 
 export default ({ preview }) => {
+  workspaceDatabase.getItem("handles", "root").then((root) => {
+    workspace.loadWorkspace(root);
+  });
+
   workspace.addEventListener("root", onWorkspaceChange);
   workspace.addEventListener("document", onDocumentChange);
   workspace.addEventListener("stylesheet", onStylesheetChange);

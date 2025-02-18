@@ -21,8 +21,8 @@ export class Database {
         .objectStore(store)
         .get(key);
 
-      getRequest.addEventListener("success", (event) => {
-        resolve(getRequest.result);
+      getRequest.addEventListener("success", () => {
+        resolve(getRequest.result ?? null);
       });
 
       getRequest.addEventListener("error", (event) => {
