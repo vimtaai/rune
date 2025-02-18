@@ -22,4 +22,19 @@
   > p {
     margin: 0;
   }
+
+  > button {
+    color: var(--color-accent-700);
+    border-color: var(--color-accent-700);
+    border-radius: var(--rounding-100);
+    font-size: var(--font-size-200);
+
+    &:hover {
+      background-color: var(--color-accent-200);
+    }
+
+    &:active {
+      background-color: var(--color-accent-300);
+    }
+  }
 }

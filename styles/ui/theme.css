@@ -9,4 +9,7 @@
     var(--color-neutral-900),
     transparent 15%
   );
+
+  --ui-footer-background: var(--color-neutral-300);
+  --ui-footer-border: var(--color-neutral-400);
 }

@@ -1,12 +1,17 @@
-import { workspace } from "../../stores/workspace.js";
+import { workspace } from "../stores/workspace.js";
 
 export default ({
   workspaceButton,
+  workspaceName,
   documentButton,
+  documentName,
   stylesheetButton,
+  stylesheetName,
   refreshButton,
 }) => {
   workspace.addEventListener("root", onWorkspaceChange);
+  workspace.addEventListener("document", onDocumentChange);
+  workspace.addEventListener("stylesheet", onStylesheetChange);
   window.addEventListener("keydown", onReloadShortcut, true);
 
   workspaceButton.addEventListener("click", onWorkspaceButtonClick);
@@ -15,9 +20,19 @@ export default ({
   refreshButton.addEventListener("click", onRefreshButtonClick);
 
   async function onWorkspaceChange() {
-    documentButton.disabled = workspace.isOpen;
-    stylesheetButton.disabled = workspace.isOpen;
-    refreshButton.disabled = workspace.isOpen;
+    documentButton.disabled = !workspace.root;
+    stylesheetButton.disabled = !workspace.root;
+    refreshButton.disabled = !workspace.root;
+
+    workspaceName.textContent = workspace.root?.name || "N/A";
+  }
+
+  async function onDocumentChange() {
+    documentName.textContent = workspace.document?.name || "N/A";
+  }
+
+  async function onStylesheetChange() {
+    stylesheetName.textContent = workspace.stylesheet?.name || "N/A";
   }
 
   function onWorkspaceButtonClick() {

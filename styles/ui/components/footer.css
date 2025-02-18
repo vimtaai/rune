@@ -1,0 +1,24 @@
+footer {
+  background-color: var(--ui-footer-background);
+  border-top: solid var(--border-100) var(--ui-footer-border);
+  display: flex;
+  gap: var(--space-500);
+  justify-content: end;
+  padding-inline: var(--space-500);
+
+  button {
+    font-size: var(--font-size-100);
+    padding: var(--space-200) var(--space-300);
+  }
+
+  button:not(:disabled):where([aria-label]) {
+    anchor-name: --button-tooltip;
+
+    &::after {
+      margin-block-end: var(--space-300);
+      right: anchor(center);
+      bottom: anchor(top);
+      transform: translateX(50%);
+    }
+  }
+}

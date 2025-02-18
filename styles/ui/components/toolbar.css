@@ -16,4 +16,20 @@
     gap: var(--space-200);
     padding: var(--space-100);
   }
+
+  button {
+    border-radius: var(--rounding-100);
+    font-size: var(--font-size-200);
+  }
+
+  button:not(:disabled):where([aria-label]) {
+    anchor-name: --button-tooltip;
+
+    &::after {
+      margin-inline-end: var(--space-300);
+      right: anchor(left);
+      top: anchor(center);
+      transform: translateY(-50%);
+    }
+  }
 }
