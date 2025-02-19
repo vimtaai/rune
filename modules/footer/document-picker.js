@@ -1,4 +1,4 @@
-import { workspace as workspaceStore } from "/stores/workspace.js";
+import { workspace as workspaceStore } from "../../stores/workspace.js";
 
 export default ({ documentButton, documentName }) => {
   workspaceStore.addEventListener("root", async () => {
