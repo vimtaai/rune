@@ -12,7 +12,7 @@ export default ({ preview }) => {
   const stylesheetElement = previewDocument.querySelector("#stylesheet");
   const placeholderContent = documentElement.innerHTML;
 
-  workspaceStore.addEventListener("root", async () => {
+  workspaceStore.addEventListener("root", () => {
     preview.hidden = !workspaceStore.root;
   });
 
@@ -27,9 +27,13 @@ export default ({ preview }) => {
     stylesheetElement.textContent = contents;
   });
 
-  settingsStore.addEventListener("zoom", async () => {
+  settingsStore.addEventListener("zoom", () => {
     const zoomPercentage = `${settingsStore.zoom * 100}%`;
     preview.style.transform = `scale(${zoomPercentage})`;
+  });
+
+  settingsStore.addEventListener("isContentEditable", () => {
+    documentElement.contentEditable = settingsStore.isContentEditable;
   });
 };
 

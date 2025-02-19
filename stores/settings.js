@@ -7,6 +7,7 @@ const ZOOM_INCREMENT = 0.1;
 
 export const settings = new Store({
   zoom: DEFAULT_ZOOM,
+  isContentEditable: false,
 
   zoomIn() {
     this.zoom = Math.min(this.zoom + ZOOM_INCREMENT, MAX_ZOOM);
