@@ -7,25 +7,24 @@ import {
 } from "../../utilities/file-system.js";
 
 export default ({ preview }) => {
+  const previewDocument = preview.contentDocument;
+  const documentElement = previewDocument.querySelector("#document");
+  const stylesheetElement = previewDocument.querySelector("#stylesheet");
+  const placeholderContent = documentElement.innerHTML;
+
   workspaceStore.addEventListener("root", async () => {
     preview.hidden = !workspaceStore.root;
   });
 
   workspaceStore.addEventListener("document", async () => {
-    const template = document.createElement("template");
     const contents = await getFileContents(workspaceStore.document);
-    template.innerHTML = contents;
-    await convertAssetUrls(template.content);
-
-    const container = preview.contentDocument.querySelector("#document");
-    container.replaceChildren(template.content);
+    documentElement.innerHTML = contents || placeholderContent;
+    await convertAssetUrls(documentElement);
   });
 
   workspaceStore.addEventListener("stylesheet", async () => {
     const contents = await getFileContents(workspaceStore.stylesheet);
-
-    const container = preview.contentDocument.querySelector("#stylesheet");
-    container.textContent = contents;
+    stylesheetElement.textContent = contents;
   });
 
   settingsStore.addEventListener("zoom", async () => {

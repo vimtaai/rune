@@ -30,6 +30,8 @@ export const workspace = new Store({
 
   async pickWorkspace() {
     this.root = await pickDirectory();
+    this.document = null;
+    this.stylesheet = null;
     workspaceDatabase.setItem("handles", "root", this.root);
   },
 

@@ -43,6 +43,10 @@ export async function getFilePath(file, directory) {
 
 export async function getFileContents(file) {
   return new Promise(async (resolve) => {
+    if (file === null) {
+      resolve(null);
+    }
+
     const fileReader = new FileReader();
 
     fileReader.addEventListener("load", () => {
