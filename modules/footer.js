@@ -1,65 +1,27 @@
-import { workspace } from "../stores/workspace.js";
+import { workspace as workspaceStore } from "../stores/workspace.js";
 
-export default ({
-  workspaceButton,
-  workspaceName,
-  documentButton,
-  documentName,
-  stylesheetButton,
-  stylesheetName,
-  refreshButton,
-}) => {
-  workspace.addEventListener("root", onWorkspaceChange);
-  workspace.addEventListener("document", onDocumentChange);
-  workspace.addEventListener("stylesheet", onStylesheetChange);
-  window.addEventListener("keydown", onReloadShortcut, true);
+export default ({ refreshButton }) => {
+  workspaceStore.addEventListener("root", async function onWorkspaceChange() {
+    refreshButton.disabled = !workspaceStore.root;
+  });
 
-  workspaceButton.addEventListener("click", onWorkspaceButtonClick);
-  documentButton.addEventListener("click", onDocumentButtonClick);
-  stylesheetButton.addEventListener("click", onStylesheetButtonClick);
-  refreshButton.addEventListener("click", onRefreshButtonClick);
+  window.addEventListener("keydown", onReloadShortcut);
 
-  async function onWorkspaceChange() {
-    documentButton.disabled = !workspace.root;
-    stylesheetButton.disabled = !workspace.root;
-    refreshButton.disabled = !workspace.root;
-
-    workspaceName.textContent = workspace.root?.name || "N/A";
-  }
-
-  async function onDocumentChange() {
-    documentName.textContent = workspace.document?.name || "N/A";
-  }
-
-  async function onStylesheetChange() {
-    stylesheetName.textContent = workspace.stylesheet?.name || "N/A";
-  }
-
-  function onWorkspaceButtonClick() {
-    workspace.pickWorkspace();
-  }
-
-  function onDocumentButtonClick() {
-    workspace.pickDocument();
-  }
-
-  function onStylesheetButtonClick() {
-    workspace.pickStylesheet();
-  }
-
-  function onRefreshButtonClick() {
-    workspace.toggleRefresh();
-  }
+  refreshButton.addEventListener("click", function onRefreshButtonClick() {
+    workspaceStore.toggleRefresh();
+  });
 
   function onReloadShortcut(event) {
-    const isModifierCorrect =
-      event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey;
+    const { ctrlKey, altKey, shiftKey, metaKey, code } = event;
 
-    if (event.code !== "KeyR" || !isModifierCorrect) {
+    const isModifierCorrect = ctrlKey && !altKey && !shiftKey && !metaKey;
+    const isKeyCorrect = code === "KeyR";
+
+    if (!isKeyCorrect || !isModifierCorrect) {
       return;
     }
 
     event.preventDefault();
-    workspace.toggleRefresh();
+    workspaceStore.toggleRefresh();
   }
 };
