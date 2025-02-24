@@ -7,14 +7,6 @@
   position: relative;
   overflow: hidden;
 
-  &.columns\:2 {
-    columns: 2;
-  }
-
-  &.columns\:3 {
-    columns: 3;
-  }
-
   hr {
     visibility: hidden;
     break-after: column;
