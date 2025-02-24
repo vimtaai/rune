@@ -1,4 +1,5 @@
-button {
+button,
+switch-button {
   align-items: center;
   background-color: transparent;
   border: solid var(--border-100) transparent;
@@ -9,7 +10,8 @@ button {
   line-height: var(--line-height-100);
   padding: var(--space-200) var(--space-300);
   position: relative;
-  transition: background-color var(--transition-200);
+  transition: border-color var(--transition-200), color var(--transition-200),
+    background-color var(--transition-200);
 
   & {
     color: var(--color-text);
@@ -23,13 +25,28 @@ button {
     }
   }
 
+  &[aria-checked="true"] {
+    color: var(--color-accent-700);
+    background-color: var(--color-accent-300);
+    border-color: var(--color-accent-700);
+
+    &:hover {
+      background-color: var(--color-accent-400);
+    }
+
+    &:active {
+      background-color: var(--color-accent-500);
+    }
+  }
+
   &:disabled {
     pointer-events: none;
     opacity: 0.4;
   }
 }
 
-button:not(:disabled):where([aria-label]) {
+button:not(:disabled):where([aria-label]),
+switch-button:not(:disabled):where([aria-label]) {
   anchor-name: --button-tooltip;
 
   &::after {
