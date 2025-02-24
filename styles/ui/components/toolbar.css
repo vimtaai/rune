@@ -9,7 +9,7 @@
   [role="group"] {
     background-color: var(--color-neutral-000);
     border: solid var(--color-neutral-400) var(--border-100);
-    border-radius: var(--rounding-100);
+    border-radius: var(--rounding-200);
     box-shadow: 0 0 5px var(--color-neutral-shadow);
     display: flex;
     flex-direction: column;
@@ -17,12 +17,14 @@
     padding: var(--space-100);
   }
 
-  button {
+  button,
+  switch-button {
     border-radius: var(--rounding-100);
     font-size: var(--font-size-200);
   }
 
-  button:not(:disabled):where([aria-label]) {
+  button:not(:disabled):where([aria-label]),
+  switch-button:not(:disabled):where([aria-label]) {
     anchor-name: --button-tooltip;
 
     &::after {

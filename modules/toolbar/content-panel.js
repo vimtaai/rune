@@ -1,22 +1,16 @@
 import { settings } from "../../stores/settings.js";
 import { workspace } from "../../stores/workspace.js";
 
-export default ({ textEditOnButton, textEditOffButton }) => {
+export default ({ textEditButton }) => {
   workspace.addEventListener("root", () => {
-    textEditOnButton.disabled = workspace.isOpen;
-    textEditOffButton.disabled = workspace.isOpen;
+    textEditButton.disabled = workspace.isOpen;
   });
 
   settings.addEventListener("isContentEditable", () => {
-    textEditOnButton.hidden = settings.isContentEditable;
-    textEditOffButton.hidden = !settings.isContentEditable;
+    textEditButton.checked = settings.isContentEditable;
   });
 
-  textEditOnButton.addEventListener("click", () => {
-    settings.isContentEditable = true;
-  });
-
-  textEditOffButton.addEventListener("click", () => {
-    settings.isContentEditable = false;
+  textEditButton.addEventListener("click", () => {
+    settings.isContentEditable = !settings.isContentEditable;
   });
 };
