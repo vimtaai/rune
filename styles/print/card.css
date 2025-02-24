@@ -5,11 +5,6 @@
       --print-card-small-side: 2in;
     }
 
-    &.square {
-      --print-card-large-side: 3in;
-      --print-card-small-side: 3in;
-    }
-
     &.small {
       --print-card-large-side: 5in;
       --print-card-small-side: 3in;
