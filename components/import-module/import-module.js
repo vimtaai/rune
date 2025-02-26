@@ -1,4 +1,4 @@
-import { ImportBase } from "./import-base.js";
+import { ImportBase } from "../import-base.js";
 
 export class ImportModule extends ImportBase {
   #refs = {};
@@ -9,8 +9,8 @@ export class ImportModule extends ImportBase {
     this.#refs = Object.fromEntries(refEntries);
   }
 
-  async onReplace() {
-    const modulePath = this.getAttribute("src").replace(/\.html$/, ".js");
+  async onConnected() {
+    const modulePath = this.template.replace(/\.html$/, ".js");
     const moduleUrl = document.baseURI + modulePath;
     const module = await import(moduleUrl);
     const init = module.default || (() => {});

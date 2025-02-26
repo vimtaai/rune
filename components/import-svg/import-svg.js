@@ -1,4 +1,4 @@
-import { ImportBase } from "./import-base.js";
+import { ImportBase } from "../import-base.js";
 
 export class ImportSvg extends ImportBase {
   async onLoad(template) {
