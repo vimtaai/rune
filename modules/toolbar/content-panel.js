@@ -6,11 +6,7 @@ export default ({ textEditButton }) => {
     textEditButton.disabled = workspace.isOpen;
   });
 
-  settings.addEventListener("isContentEditable", () => {
-    textEditButton.checked = settings.isContentEditable;
-  });
-
   textEditButton.addEventListener("click", () => {
-    settings.isContentEditable = !settings.isContentEditable;
+    settings.isContentEditable = textEditButton.checked;
   });
 };
