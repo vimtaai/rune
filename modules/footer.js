@@ -1,14 +1,14 @@
-import { workspace as workspaceStore } from "../stores/workspace.js";
+import { workspace } from "../stores/workspace.js";
 
 export default ({ refreshButton }) => {
-  workspaceStore.addEventListener("root", async function onWorkspaceChange() {
-    refreshButton.disabled = !workspaceStore.root;
+  workspace.addEventListener("root", async function onWorkspaceChange() {
+    refreshButton.disabled = !workspace.root;
   });
 
   window.addEventListener("keydown", onReloadShortcut);
 
   refreshButton.addEventListener("click", function onRefreshButtonClick() {
-    workspaceStore.toggleRefresh();
+    workspace.toggleRefresh();
   });
 
   function onReloadShortcut(event) {
@@ -22,6 +22,6 @@ export default ({ refreshButton }) => {
     }
 
     event.preventDefault();
-    workspaceStore.toggleRefresh();
+    workspace.toggleRefresh();
   }
 };

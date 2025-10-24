@@ -3,6 +3,6 @@ import { workspace as workspaceStore } from "../stores/workspace.js";
 
 export default () => {
   workspaceDatabase.getItem("handles", "root").then((root) => {
-    workspaceStore.loadWorkspace(root);
+    workspaceStore.root = root;
   });
 };

@@ -1,54 +1,27 @@
 import { workspaceDatabase } from "../databases/workspace.js";
-import { Store } from "../utilities/store.js";
-import {
-  getFilePath,
-  pickDirectory,
-  pickFileFromDirectory,
-} from "../utilities/file-system.js";
+import { FileSystemStore } from "../utilities/filesystem.js";
 
-export const workspace = new Store({
-  root: null,
+export const workspace = new FileSystemStore({
   document: null,
   stylesheet: null,
 
-  get isOpen() {
-    return this.root !== null;
-  },
-
   async getDocumentPath() {
-    if (this.document === null) {
-      return [];
-    }
-
-    const fullPath = await getFilePath(this.document, this.root);
-    return fullPath.slice(0, -1);
-  },
-
-  async loadWorkspace(root) {
-    this.root = root;
+    return this.getFilePath(this.document);
   },
 
   async pickWorkspace() {
-    this.root = await pickDirectory();
+    this.root = await this.pickRoot();
     this.document = null;
     this.stylesheet = null;
     workspaceDatabase.setItem("handles", "root", this.root);
   },
 
   async pickDocument() {
-    this.document = await pickFileFromDirectory({
-      directory: this.root,
-      description: "Documents",
-      types: [".html"],
-    });
+    this.document = await this.pickFile("Documents", [".html"]);
   },
 
   async pickStylesheet() {
-    this.stylesheet = await pickFileFromDirectory({
-      directory: this.root,
-      description: "Stylesheets",
-      types: [".css"],
-    });
+    this.stylesheet = await this.pickFile("Stylesheets", [".css"]);
   },
 
   toggleRefresh() {

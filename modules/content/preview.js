@@ -1,10 +1,5 @@
-import { workspace as workspaceStore } from "../../stores/workspace.js";
-import { settings as settingsStore } from "../../stores/settings.js";
-import {
-  findFileInDirectory,
-  getFileContents,
-  resolvePath,
-} from "../../utilities/file-system.js";
+import { workspace } from "../../stores/workspace.js";
+import { settings } from "../../stores/settings.js";
 
 export default ({ preview }) => {
   const previewDocument = preview.contentDocument;
@@ -12,41 +7,60 @@ export default ({ preview }) => {
   const stylesheetElement = previewDocument.querySelector("#stylesheet");
   const placeholderContent = documentElement.innerHTML;
 
-  workspaceStore.addEventListener("root", () => {
-    preview.hidden = !workspaceStore.root;
+  workspace.addEventListener("root", () => {
+    preview.hidden = !workspace.root;
   });
 
-  workspaceStore.addEventListener("document", async () => {
-    const contents = await getFileContents(workspaceStore.document);
+  workspace.addEventListener("document", async () => {
+    const contents = await workspace.getFileContents(workspace.document);
     documentElement.innerHTML = contents || placeholderContent;
     await convertAssetUrls(documentElement);
   });
 
-  workspaceStore.addEventListener("stylesheet", async () => {
-    const contents = await getFileContents(workspaceStore.stylesheet);
+  workspace.addEventListener("stylesheet", async () => {
+    const contents = await workspace.getFileContents(workspace.stylesheet);
     stylesheetElement.textContent = contents;
   });
 
-  settingsStore.addEventListener("zoom", () => {
-    const zoomPercentage = `${settingsStore.zoom * 100}%`;
+  settings.addEventListener("zoom", () => {
+    const zoomPercentage = `${settings.zoom * 100}%`;
     preview.style.transform = `scale(${zoomPercentage})`;
   });
 
-  settingsStore.addEventListener("isContentEditable", () => {
-    documentElement.contentEditable = settingsStore.isContentEditable;
+  settings.addEventListener("isContentEditable", () => {
+    documentElement.contentEditable = settings.isContentEditable;
   });
 };
 
 async function convertAssetUrls(element) {
   const assetElements = element.querySelectorAll(`[src]`);
-  const basePath = await workspaceStore.getDocumentPath();
+  const basePath = await workspace.getDocumentPath();
 
   for (const assetElement of assetElements) {
     const src = assetElement.getAttribute("src");
     const path = resolvePath(src, basePath);
-    const assetHandle = await findFileInDirectory(path, workspaceStore.root);
+    const assetHandle = await workspace.findFile(path);
     const assetContent = await assetHandle.getFile();
     const assetUrl = URL.createObjectURL(assetContent);
     assetElement.src = assetUrl;
+  }
+
+  function resolvePath(path, basePath = []) {
+    if (path.includes("://")) {
+      return path;
+    }
+
+    const currentPath = [...basePath];
+    const remainingPath = path.split("/");
+
+    for (const part of remainingPath) {
+      if (part === "..") {
+        currentPath.pop();
+      } else if (part !== "" && part !== ".") {
+        currentPath.push(part);
+      }
+    }
+
+    return currentPath.join("/");
   }
 }
