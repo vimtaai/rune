@@ -1,7 +1,7 @@
 export class Store extends EventTarget {
   #state = {};
 
-  constructor(initialState = {}) {
+  constructor(initialState) {
     super();
 
     for (const [key, value] of Object.entries(initialState)) {
@@ -14,7 +14,12 @@ export class Store extends EventTarget {
     Object.defineProperty(this, key, {
       get: () => {
         const value = Reflect.get(this.#state, key);
-        return typeof value === "function" ? value.bind(this) : value;
+
+        if (typeof value === "function") {
+          return value.bind(this);
+        }
+
+        return value;
       },
       set: (newValue) => {
         Reflect.set(this.#state, key, newValue);

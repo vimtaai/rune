@@ -1,11 +1,11 @@
-import { workspace } from "../../stores/workspace.js";
+import { workspace as workspaceStore } from "../../stores/workspace.js";
 
 export default ({ workspaceButton, workspaceName }) => {
-  workspace.addEventListener("root", async () => {
-    workspaceName.textContent = workspace.root?.name || "N/A";
+  workspaceStore.addEventListener("root", async () => {
+    workspaceName.textContent = workspaceStore.root?.name || "N/A";
   });
 
   workspaceButton.addEventListener("click", () => {
-    workspace.pickRoot();
+    workspaceStore.pickWorkspace();
   });
 };
