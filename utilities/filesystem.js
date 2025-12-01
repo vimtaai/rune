@@ -6,7 +6,7 @@ export class FileSystemStore extends Store {
   }
 
   async pickRoot() {
-    this.root = await window.showDirectoryPicker();
+    return await window.showDirectoryPicker();
   }
 
   async pickFile(description, allowedTypes = []) {

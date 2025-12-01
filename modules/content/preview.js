@@ -14,7 +14,10 @@ export default ({ preview }) => {
   workspace.addEventListener("document", async () => {
     const contents = await workspace.getFileContents(workspace.document);
     documentElement.innerHTML = contents || placeholderContent;
-    await convertAssetUrls(documentElement);
+
+    if (contents) {
+      await convertAssetUrls(documentElement);
+    }
   });
 
   workspace.addEventListener("stylesheet", async () => {

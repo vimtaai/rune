@@ -6,6 +6,6 @@ export default ({ workspaceButton, workspaceName }) => {
   });
 
   workspaceButton.addEventListener("click", () => {
-    workspace.pickRoot();
+    workspace.pickWorkspace();
   });
 };
